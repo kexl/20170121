@@ -1,0 +1,104 @@
+<?php require_once('adminqx.php'); ?>
+<?php require_once('../include/config.php'); ?>
+<?php
+if(isset($_GET['cid'])){
+	$cid=$_GET['cid'];
+}else{
+  exit();	
+}
+$updir="/statics/images/up/";//设置上传文件所存放的文件夹,这里是上传的相对站点根目录的路径
+$filedir="../..".$updir;//设置上传文件所存放的文件夹,这里是上传的相对路径
+$sqlstr="select cpic from ".$hbpre."class where cid=$cid";
+$query=mysql_query($sqlstr);
+$rs=mysql_fetch_array($query);
+$cpic=$rs['cpic'];
+$set_ext="|jpg|png|gif|rar|";//限制上传的扩展名jpg,png,gif
+if(isset($_POST['aa'])){
+	$time=time();
+	$oldname=strtolower($_FILES['myfile']['name']); //上传前的本地文件名
+	$ext_arr=explode(".",$oldname);//将上传前的文件名转换数组
+	$tmp=$_FILES['myfile']['tmp_name'];
+	$ext=end($ext_arr);//   		得到文件扩展名
+	if(strpos($set_ext,$ext)){
+		$updir=$updir.date("Y",$time)."/";
+		$filedir=$filedir.date("Y",$time)."/";
+	  $newfilea=date("mdhis",$time).rand(0,9).".".$ext;
+	  if(!file_exists($filedir)){
+		  cdir($filedir);
+		}
+	  $newfile=$filedir.$newfilea;//后台上传的相对路径,
+	  $dbfile=$updir.$newfilea;//写入数据表的路径名,是相对站根目录的路径
+	  move_uploaded_file($tmp,$newfile);
+	   if(strlen($cpic)>5){
+		 		$cdelpic="../..".$cpic;
+			if(file_exists($cdelpic)){
+			  unlink($cdelpic);	
+			}
+		 }
+	  $sqlstr="update ".$hbpre."class set cpic='$dbfile' where cid=$cid";
+	  mysql_query($sqlstr);
+	  echo "<script language='javascript'>";
+	  echo "alert('上传成功');";
+	  echo "window.opener.location.reload(true);";
+	  echo "window.close();";
+	  echo "</script>";
+	}else{
+	  echo "<script language='javascript'>";
+	  echo "alert('你选择的文件非法，本系统限制为只能上传扩展名".$set_ext."的文件');";
+	  echo "history.back(-1);";
+	  echo "</script>";
+	}
+
+}
+if(isset($_GET['del'])){
+ 	   if(strlen($cpic)>5){
+		 		$cdelpic=$_SERVER['DOCUMENT_ROOT'].$cpic;
+			if(file_exists($cdelpic)){
+			  unlink($cdelpic);	
+			}
+		 }
+  $sqlstr="update ".$hbpre."class set cpic='' where cid=$cid";
+  mysql_query($sqlstr);
+	  echo "<script language='javascript'>";
+	  echo "window.opener.location.reload(true);";
+	  echo "window.close();";
+	  echo "</script>";
+}
+
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<div align="center">
+<?php
+if($cpic==''){
+  echo "无图片";
+}else{
+?>
+  <img src="<?php echo $cpic;?>"  width="400" />
+  <?php
+}
+?>
+
+</div>
+<form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <div align="center"> 
+    <p>
+      <input type="file" name="myfile" id="myfile" />
+      <input type="submit" name="aa" id="aa" value="提交" />
+    </p>
+    <p>&nbsp;
+      <input type="button" name="button" onclick="location='?cid=<?php echo $cid;?>&del=1';" id="button" value="  删除图片  " />
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="button" name="button2" id="button2" value="  关闭  " onclick="window.close()" />
+&nbsp;    </p>
+  </div>
+</form>
+</body>
+</html>

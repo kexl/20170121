@@ -1,0 +1,36 @@
+
+.pagelist_nav1 li a,.pagelist_nav1 li {font-size: 12px;margin: 8px 3px;}
+.pagelist_nav1 ol{border-bottom: 1px dashed #ccc;}
+.pagelist_nav1 ul li a{color: #e5004f;}
+.pagelist_nav1 ul li {color: #ccc;float: left;}
+
+.pagelist_box .yztj{border: 2px solid #e5004f;padding: 10px 0;position: relative;}
+.pagelist_box .yztj p{position: absolute;color: #fff;font-size: 18px;background: #e5004f;padding:3px 10px;border-radius: 0 0 8px 8px;top: 0;left: 10px;}
+.pagelist_box .yztj dl {float: left;width: 235px;padding:0 10px;}
+.pagelist_box .yztj dl img{width: 215px;height: 163px;}
+.pagelist_box .yztj dl dd a{display: block;font-size: 12px;color: #333;margin: 5px 0;}
+.pagelist_box .yztj dl dd i{font-size: 12px;color: #777;}
+.pagelist_box .yztj dl dd b{float: right;color: #e5004f;}
+.pagelist_box {width: 945px;}
+
+
+.pagelist_box .cfhx dl dt{color:#e5004f;margin-right: 40px;font-weight: bold;}
+.pagelist_box .cfhx dl a{font-size: 12px;margin-left: 10px;color: #555;display: inline-block;padding: 1px  5px;}
+.pagelist_box .cfhx dl a:hover,.pagelist_box .cfhx dl .active7{background: #e5004f;color: #fff;}
+.pagelist_box .cfhx dl .txt{width: 90px;line-height: 20px;margin: 0 10px;}
+.pagelist_box .cfhx dl .btn{background: none;line-height: 20px;padding: 0 8px;}
+.pagelist_box .cfhx button{border: none;width: 60px;line-height: 25px;background: #fbfbfb;border: 1px solid #ccc;}
+.pagelist_box .cfhx dl dt,.pagelist_box .cfhx dl dd{float: left;font-size: 12px;}
+.pagelist_box .ol3{background: #f8f8f8;border-top: none;}
+.pagelist_box .ol3 a{margin:0 10px;color: #666;}
+.pagelist_box .ol3 .active8{color: #e5004f;}
+.pagelist_box .bldyd .fl{width: 185px;}
+.pagelist_box .bldyd .fr{width: 760px;border-bottom: 1px dashed #ccc;}
+.pagelist_box .bldyd .fr .title{display: inline-block;width: 650px;float: left;font-size: 15px;color: #0099d9;}
+.pagelist_box .bldyd .fr b{float: right;color: #e5004f;font-size: 20px;font-weight: normal;}
+.pagelist_box .bldyd .fr span a,.pagelist_box .bldyd .fr span{font-size: 12px;color: #999;margin-right: 10px;}
+.pagelist_box .tjxz dl{padding:8px 10px 0 10px;font-size: 12px;}
+.pagelist_box .tjxz dl a{margin-left: 10px;font-size: 12px;color: #0099d9;}
+.pagelist_right{width: 235px;position: relative;}
+.pagelist_right .mb10 a{display: inline-block;padding: 5px 10px;border: 1px solid #ccc;margin: 8px 0 8px 8px;border-radius: 4px;color: #888;}
+.pagelist_right dl dd{float: left;margin:10px 0 10px 20px;}
